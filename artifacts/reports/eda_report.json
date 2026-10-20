@@ -1,0 +1,58 @@
+{
+  "dataset_rows": 15000,
+  "dataset_columns": 31,
+  "legitimate_count": 14880,
+  "fraud_count": 120,
+  "fraud_percentage": 0.8,
+  "amount_statistics": {
+    "overall_mean": 54.22062066666666,
+    "overall_median": 25.415,
+    "overall_max": 2822.02,
+    "legit_median": 25.3,
+    "fraud_median": 196.33499999999998
+  },
+  "top_positive_correlated_features": [
+    {
+      "feature": "V19",
+      "correlation": 0.0116
+    },
+    {
+      "feature": "V2",
+      "correlation": 0.0123
+    },
+    {
+      "feature": "V11",
+      "correlation": 0.2244
+    },
+    {
+      "feature": "Amount",
+      "correlation": 0.2596
+    },
+    {
+      "feature": "V4",
+      "correlation": 0.3261
+    }
+  ],
+  "top_negative_correlated_features": [
+    {
+      "feature": "V14",
+      "correlation": -0.3763
+    },
+    {
+      "feature": "V12",
+      "correlation": -0.2905
+    },
+    {
+      "feature": "V17",
+      "correlation": -0.2544
+    },
+    {
+      "feature": "V10",
+      "correlation": -0.2411
+    },
+    {
+      "feature": "V1",
+      "correlation": -0.0129
+    }
+  ]
+}

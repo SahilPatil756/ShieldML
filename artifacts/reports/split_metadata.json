@@ -1,0 +1,20 @@
+{
+  "split_method": "temporal",
+  "train_size": 10500,
+  "val_size": 2250,
+  "test_size": 2250,
+  "train_fraud_count": 78,
+  "val_fraud_count": 26,
+  "test_fraud_count": 16,
+  "train_fraud_rate": 0.00743,
+  "val_fraud_rate": 0.01156,
+  "test_fraud_rate": 0.00711,
+  "time_boundaries": {
+    "train_time_min": 2.275526512651993,
+    "train_time_max": 120394.07054344282,
+    "val_time_min": 120394.7754759248,
+    "val_time_max": 146379.56209337295,
+    "test_time_min": 146381.27550799333,
+    "test_time_max": 172796.02912817756
+  }
+}

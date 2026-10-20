@@ -1,0 +1,63 @@
+baseline:
+  model_type: "logistic_regression"
+  params:
+    C: 1.0
+    penalty: "l2"
+    solver: "lbfgs"
+    max_iter: 1000
+    class_weight: "balanced"
+    random_state: 42
+
+random_forest:
+  model_type: "random_forest"
+  params:
+    n_estimators: 100
+    max_depth: 12
+    min_samples_split: 5
+    min_samples_leaf: 2
+    class_weight: "balanced"
+    n_jobs: -1
+    random_state: 42
+  grid_search:
+    n_estimators: [50, 100, 150]
+    max_depth: [8, 12, 16]
+    min_samples_split: [2, 5]
+
+xgboost:
+  model_type: "xgboost"
+  params:
+    n_estimators: 150
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: 10.0
+    eval_metric: "aucpr"
+    random_state: 42
+    n_jobs: -1
+  optuna_tuning:
+    n_trials: 15
+    timeout_seconds: 300
+
+lightgbm:
+  model_type: "lightgbm"
+  params:
+    n_estimators: 150
+    num_leaves: 31
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: 10.0
+    random_state: 42
+    n_jobs: -1
+    verbose: -1
+  optuna_tuning:
+    n_trials: 15
+    timeout_seconds: 300
+
+ensemble:
+  model_type: "soft_voting_ensemble"
+  voting: "soft"
+  weights: [0.25, 0.40, 0.35]  # [RandomForest, XGBoost, LightGBM]
+  calibrate: true

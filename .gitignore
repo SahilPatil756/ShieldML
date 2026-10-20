@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+coverage/
+
+# Python byte-code & caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+
+# Environment and sensitive files
+.env
+.env.*
+!.env.example
+
+# Large Data files (track README and directory, ignore raw CSV dumps)
+data/raw/*.csv
+data/raw/*.zip
+data/processed/*.parquet
+data/processed/*.csv
+!data/README.md
+
+# SQLite / MLflow local run artifacts
+*.db-journal
+*.log
+mlruns/
+.aistudio/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

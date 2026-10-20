@@ -1,0 +1,64 @@
+project:
+  name: "ShieldML"
+  version: "1.0.0"
+  description: "Real-Time Financial Fraud Detection System"
+  seed: 42
+
+data:
+  raw_path: "data/raw/creditcard.csv"
+  processed_dir: "data/processed"
+  target_column: "Class"
+  timestamp_column: "Time"
+  amount_column: "Amount"
+  customer_id_column: null
+  merchant_id_column: null
+  device_id_column: null
+  split:
+    train_ratio: 0.70
+    val_ratio: 0.15
+    test_ratio: 0.15
+    method: "temporal"  # "temporal" when timestamp is available, "stratified" fallback
+    stratify_fallback: true
+
+features:
+  scale_numeric: true
+  scaler_type: "robust"  # "robust" or "standard"
+  log_transform_amount: true
+  cyclical_time: true
+  compute_velocity: true
+  velocity_windows_hours: [1, 24, 168]
+  merchant_aggregation: true
+
+imbalance:
+  strategy: "smote"  # "smote", "class_weight", "undersample", "none"
+  sampling_strategy: 0.10  # Resample minority to 10% of majority in training set
+  random_state: 42
+
+optimization:
+  threshold_metric: "f2_score"
+  f2_beta: 2.0
+  threshold_search_steps: 200
+  calibration_method: "sigmoid"  # "sigmoid" (Platt) or "isotonic"
+  calibration_cv: "prefit"
+
+explainability:
+  enable_shap: true
+  max_background_samples: 100
+  top_k_features: 5
+  fast_inference_mode: false  # When true, skips SHAP calculation during /predict for <10ms latency
+
+mlflow:
+  tracking_uri: "file:./mlruns"
+  experiment_name: "ShieldML_Fraud_Detection"
+  registered_model_name: "ShieldMLChampion"
+
+artifacts:
+  models_dir: "artifacts/models"
+  reports_dir: "artifacts/reports"
+  figures_dir: "artifacts/figures"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  timeout_seconds: 30
+  latency_target_ms: 50.0

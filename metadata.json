@@ -1,0 +1,6 @@
+{
+  "name": "ShieldML — Real-Time Financial Fraud Detection System",
+  "description": "Production-grade real-time financial fraud detection system featuring XGBoost, LightGBM, Random Forest, soft-voting ensemble, SMOTE, F2 threshold optimization, SHAP explainability, and FastAPI serving.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

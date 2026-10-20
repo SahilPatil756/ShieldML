@@ -1,0 +1,18 @@
+{
+  "model_name": "ShieldMLChampion",
+  "threshold": 0.4045,
+  "roc_auc": 1.0,
+  "pr_auc": 1.0,
+  "f1": 0.9916,
+  "f2": 0.9866,
+  "precision": 1.0,
+  "recall": 0.9833,
+  "balanced_accuracy": 0.9917,
+  "brier_score": 0.00012,
+  "true_positives": 118,
+  "false_positives": 0,
+  "true_negatives": 14880,
+  "false_negatives": 2,
+  "false_positive_rate": 0.0,
+  "false_negative_rate": 0.01667
+}

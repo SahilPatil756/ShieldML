@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  shieldml-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shieldml-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - API_PORT=8000
+      - MODEL_ARTIFACT_PATH=artifacts/models/champion_model.joblib
+      - PIPELINE_ARTIFACT_PATH=artifacts/models/feature_pipeline.joblib
+      - METADATA_PATH=artifacts/models/champion_metadata.json
+      - MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+    volumes:
+      - ./artifacts:/app/artifacts:ro
+      - ./mlflow.db:/app/mlflow.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  mlflow-server:
+    image: ghcr.io/mlflow/mlflow:v2.14.0
+    container_name: shieldml-mlflow
+    ports:
+      - "5000:5000"
+    command: mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlflow/artifacts --host 0.0.0.0 --port 5000
+    volumes:
+      - ./mlflow.db:/mlflow.db
+      - ./artifacts:/mlflow/artifacts
+    restart: unless-stopped
