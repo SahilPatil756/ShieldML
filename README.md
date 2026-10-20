@@ -366,7 +366,3 @@ docker-compose up -d
 - [x] **Interactive UI**: Live scoring simulator, threshold optimizer, and SHAP studio operational.
 
 ---
-
-## License
-
-MIT License. Copyright (c) 2026 ShieldML Engineering Team.
